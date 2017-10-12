@@ -3,7 +3,6 @@ package api
 import (
   "github.com/emicklei/go-restful"
   "log"
-  "time"
 )
 
 type Note struct {
@@ -59,10 +58,10 @@ func NewNoteService() *restful.WebService {
 
 // Route Filter (as a struct that defines a FilterFunction)
 // CountFilter implements a FilterFunction for counting requests.
-type CountFilter struct {
-  count   int
-  counter chan int // for go-routine safe count increments
-}
+//type CountFilter struct {
+//  count   int
+//  counter chan int // for go-routine safe count increments
+//}
 
 // NewCountFilter creates and initializes a new CountFilter.
 //func NewCountFilter() *CountFilter {
