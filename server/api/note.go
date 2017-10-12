@@ -6,7 +6,12 @@ import (
 )
 
 type Note struct {
-  Id, Name string
+  Id
+  Title string
+  Description string
+  Starred false
+  Done  false
+  Deleted false
 }
 
 type NoteList struct {

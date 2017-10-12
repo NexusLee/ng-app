@@ -11,8 +11,6 @@ func main(){
   // install a global (=DefaultContainer) filter (processed before any webservice in the DefaultContainer)
   restful.Filter(globalLogging)
 
-  //api.NewUserService()
-
   restful.Add(api.NewUserService())
   restful.Add(api.NewNoteService())
   log.Print("start listening on localhost:3000")
