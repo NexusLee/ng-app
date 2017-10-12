@@ -25,10 +25,10 @@ func NewNoteService() *restful.WebService {
   ws.Filter(webserviceLogging).Filter(measureTime)
 
   // install a counter filter
-  ws.Route(ws.GET("").Filter(NewCountFilter().routeCounter).To(getAllUsers))
+  ws.Route(ws.GET("").Filter(NewCountFilter().routeCounter).To(getAllNotes))
 
   // install 2 chained route filters (processed before calling findUser)
-  ws.Route(ws.GET("/{user-id}").Filter(routeLogging).Filter(NewCountFilter().routeCounter).To(findUser))
+  ws.Route(ws.GET("/{user-id}").Filter(routeLogging).Filter(NewCountFilter().routeCounter).To(findNote()))
   return ws
 }
 
@@ -86,13 +86,13 @@ type CountFilter struct {
 // GET http://localhost:8080/users
 //
 func getAllNotes(request *restful.Request, response *restful.Response) {
-  log.Print("getAllUsers")
+  log.Print("getAllNotes")
   response.WriteEntity(UserList{[]User{{"42", "Gandalf"}, {"3.14", "Pi"}}})
 }
 
 // GET http://localhost:8080/users/42
 //
 func findNote(request *restful.Request, response *restful.Response) {
-  log.Print("findUser")
+  log.Print("findNote")
   response.WriteEntity(User{"42", "Gandalf"})
 }
