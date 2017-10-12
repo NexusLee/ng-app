@@ -1,0 +1,11 @@
+<div class="widget widget--center">
+  ...
+  <h1>
+    {{title}}
+  </h1>
+  <nz-carousel [nzAutoPlay]="true">
+    <div nz-carousel-content *ngFor="let index of array"><h3>{{index}}</h3></div>
+  </nz-carousel>
+</div>
+<app-notes-list [filter]="filter"></app-notes-list>
+<!--<app-add-note-button></app-add-note-button>-->
