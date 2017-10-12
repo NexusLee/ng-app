@@ -2,6 +2,7 @@ package main
 
 import (
   "github.com/emicklei/go-restful"
+  "github.com/NexusLee/ng-app/server/api"
   "log"
   "net/http"
 )
@@ -10,7 +11,9 @@ func main(){
   // install a global (=DefaultContainer) filter (processed before any webservice in the DefaultContainer)
   restful.Filter(globalLogging)
 
-  restful.Add(NewUserService())
+  //api.NewUserService()
+
+  restful.Add(api.NewUserService())
   log.Print("start listening on localhost:3000")
   log.Fatal(http.ListenAndServe(":3000", nil))
 }
