@@ -27,7 +27,7 @@ func NewNoteService() *restful.WebService {
   ws.Route(ws.GET("").Filter(NewCountFilter().routeCounter).To(getAllNotes))
 
   // install 2 chained route filters (processed before calling findUser)
-  ws.Route(ws.GET("/{user-id}").Filter(routeLogging).Filter(NewCountFilter().routeCounter).To(findNote()))
+  ws.Route(ws.GET("/{user-id}").Filter(routeLogging).Filter(NewCountFilter().routeCounter).To(findNote))
   return ws
 }
 
