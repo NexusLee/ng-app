@@ -10,7 +10,7 @@ type Note struct {
 }
 
 type NoteList struct {
-  Users []User
+  Notes []Note
 }
 
 func NewNoteService() *restful.WebService {
@@ -86,12 +86,12 @@ func NewNoteService() *restful.WebService {
 //
 func getAllNotes(request *restful.Request, response *restful.Response) {
   log.Print("getAllNotes")
-  response.WriteEntity(UserList{[]User{{"42", "Gandalf"}, {"3.14", "Pi"}}})
+  response.WriteEntity(NoteList{[]Note{{"42", "Gandalf"}, {"3.14", "Pi"}}})
 }
 
 // GET http://localhost:8080/users/42
 //
 func findNote(request *restful.Request, response *restful.Response) {
   log.Print("findNote")
-  response.WriteEntity(User{"42", "Gandalf"})
+  response.WriteEntity(Note{"42", "Gandalf"})
 }

@@ -14,6 +14,7 @@ func main(){
   //api.NewUserService()
 
   restful.Add(api.NewUserService())
+  restful.Add(api.NewNoteService())
   log.Print("start listening on localhost:3000")
   log.Fatal(http.ListenAndServe(":3000", nil))
 }
