@@ -9,9 +9,9 @@ type Note struct {
   Id
   Title string
   Description string
-  Starred false
-  Done  false
-  Deleted false
+  Starred bool
+  Done  bool
+  Deleted bool
 }
 
 type NoteList struct {
