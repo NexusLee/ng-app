@@ -6,7 +6,7 @@ import (
 )
 
 type Note struct {
-  Id int
+  ID int
   Title string
   Description string
   Starred bool
@@ -91,12 +91,12 @@ func NewNoteService() *restful.WebService {
 //
 func getAllNotes(request *restful.Request, response *restful.Response) {
   log.Print("getAllNotes")
-  response.WriteEntity(NoteList{[]Note{{1, "Gandalf"}, {2, "Pi"}}})
+  response.WriteEntity(NoteList{[]Note{{ID: 1, Title: "Gandalf"}, {ID: 2, Title: "Pi"}}})
 }
 
 // GET http://localhost:8080/users/42
 //
 func findNote(request *restful.Request, response *restful.Response) {
   log.Print("findNote")
-  response.WriteEntity(Note{1, "Gandalf"})
+  response.WriteEntity(Note{ID: 1, Title: "Gandalf"})
 }
