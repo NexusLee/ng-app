@@ -6,7 +6,7 @@ import (
 )
 
 type Note struct {
-  Id Int
+  Id int
   Title string
   Description string
   Starred bool
