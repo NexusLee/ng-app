@@ -91,12 +91,12 @@ func NewNoteService() *restful.WebService {
 //
 func getAllNotes(request *restful.Request, response *restful.Response) {
   log.Print("getAllNotes")
-  response.WriteEntity(NoteList{[]Note{{"42", "Gandalf"}, {"3", "Pi"}}})
+  response.WriteEntity(NoteList{[]Note{{1, "Gandalf"}, {2, "Pi"}}})
 }
 
 // GET http://localhost:8080/users/42
 //
 func findNote(request *restful.Request, response *restful.Response) {
   log.Print("findNote")
-  response.WriteEntity(Note{"42", "Gandalf"})
+  response.WriteEntity(Note{1, "Gandalf"})
 }
