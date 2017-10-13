@@ -11,7 +11,7 @@ import { Note } from '../note/note';
 @Injectable()
 export class NoteService {
 
-  private notesUrl = 'app/notes';
+  private notesUrl = '/api/notes';
   private headers: Headers = new Headers({
     'Content-Type': 'application/json',
   });
@@ -28,7 +28,6 @@ export class NoteService {
   }
 
   getNotes(): Observable<Array<Note>> {
-    //return null;
     return this.http
       .get(this.notesUrl, this.options)
       .map((response) => <Note[]> response.json())

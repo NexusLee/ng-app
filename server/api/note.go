@@ -21,7 +21,7 @@ type NoteList struct {
 func NewNoteService() *restful.WebService {
   ws := new(restful.WebService)
   ws.
-  Path("/notes").
+  Path("/api/notes").
   Consumes(restful.MIME_XML, restful.MIME_JSON).
   Produces(restful.MIME_JSON, restful.MIME_XML)
 
@@ -91,12 +91,12 @@ func NewNoteService() *restful.WebService {
 //
 func getAllNotes(request *restful.Request, response *restful.Response) {
   log.Print("getAllNotes")
-  response.WriteEntity(NoteList{[]Note{{ID: 1, Title: "Gandalf"}, {ID: 2, Title: "Pi"}}})
+  response.WriteEntity(NoteList{[]Note{{ID: 1, Title: "Task of the day"}, {ID: 2, Title: "Pi", Description: "Buy a milk."}}})
 }
 
 // GET http://localhost:8080/users/42
 //
 func findNote(request *restful.Request, response *restful.Response) {
   log.Print("findNote")
-  response.WriteEntity(Note{ID: 1, Title: "Gandalf"})
+  response.WriteEntity(Note{ID: 1, Title: "Task of the day"})
 }
