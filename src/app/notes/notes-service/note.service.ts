@@ -35,8 +35,7 @@ export class NoteService {
   }
 
   create(note: Note): Observable<Array<Note>> {
-    //return null;
-    const url = `${this.notesUrl}/${note.id}`;
+    const url = `${this.notesUrl}/${note.ID}`;
     return this.http
       .post(url, JSON.stringify(note), this.options)
       .map((response: Response) => <Note> response.json())
@@ -44,8 +43,7 @@ export class NoteService {
   }
 
   update(note: Note): Observable<Array<Note>> {
-    //return null;
-    const url = `${this.notesUrl}/${note.id}`;
+    const url = `${this.notesUrl}/${note.ID}`;
     return this.http
       .put(url, JSON.stringify(note), this.options)
       .map((response: Response) => <Note> response.json())

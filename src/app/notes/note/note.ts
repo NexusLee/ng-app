@@ -1,18 +1,18 @@
 export class Note {
-  id: number;
-  title: string;
-  description: string;
-  _starred = false;
-  _done = false;
-  _deleted = false;
+  ID: number;
+  Title: string;
+  Description: string;
+  Starred = false;
+  Done = false;
+  Deleted = false;
 
-  constructor(id: number, title: string, description: string, starred?: boolean, done?: boolean, deleted?: boolean) {
-    this.id = id;
-    this.title = title;
-    this.description = description;
-    this._starred = starred ? starred : false;
-    this._done = done ? done : false;
-    this._deleted = deleted ? deleted : false;
+  constructor(ID: number, Title: string, Description: string, Starred?: boolean, Done?: boolean, Deleted?: boolean) {
+    this.ID = ID;
+    this.Title = Title;
+    this.Description = Description;
+    this.Starred = Starred ? Starred : false;
+    this.Done = Done ? Done : false;
+    this.Deleted = Deleted ? Deleted : false;
   };
 
 }

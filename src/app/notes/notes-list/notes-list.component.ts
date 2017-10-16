@@ -48,9 +48,12 @@ export class NotesListComponent implements OnChanges {
     this.noteService
       .getNotes()
       .subscribe(
-        notes =>
-          this.notes = notes['data'].filter((note) =>
-          !note._done && !note._deleted && !note._starred)
+        notes => {
+          this.notes = notes['Notes'].filter((note) =>
+          !note._done && !note._deleted && !note._starred);
+
+          console.log(this.notes);
+        }
       );
   }
 

@@ -33,7 +33,7 @@ type UserList struct {
 func NewUserService() *restful.WebService {
   ws := new(restful.WebService)
   ws.
-  Path("/users").
+  Path("/api/users").
   Consumes(restful.MIME_XML, restful.MIME_JSON).
   Produces(restful.MIME_JSON, restful.MIME_XML)
 

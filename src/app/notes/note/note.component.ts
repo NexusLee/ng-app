@@ -15,17 +15,17 @@ export class NoteComponent {
   change: EventEmitter<Note> = new EventEmitter(true);
 
   toggleDone(): void {
-    this.note._done = !this.note._done;
+    this.note.Done = !this.note.Done;
     this.change.emit(this.note);
   }
 
   toggleDiscarded(): void {
-    this.note._deleted = !this.note._deleted;
+    this.note.Deleted = !this.note.Deleted;
     this.change.emit(this.note);
   }
 
   toggleStarred(): void {
-    this.note._starred = !this.note._starred;
+    this.note.Starred = !this.note.Starred;
     this.change.emit(this.note);
   }
 

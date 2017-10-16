@@ -19,21 +19,20 @@
     <button md-button class="c-md-card__btn" (click)="toggleDiscarded()">Discard</button>
   </md-card-actions>
 </md-card> -->
-
-<!--<nz-card style="width:300px;">
-  <ng-template #title>
-    Card title
-  </ng-template>
-  <ng-template #extra>
-    <a>More</a>
-  </ng-template>
-  <ng-template #body>
-    <p>Card content</p>
-    <p>Card content</p>
-    <p>Card content</p>
-  </ng-template>
-</nz-card>-->
-
 <div>
-  1233333
+  <nz-card style="width:300px;">
+    <ng-template #title>
+      {{note?.Title}}
+    </ng-template>
+    <ng-template #extra>
+      <a>更多</a>
+    </ng-template>
+    <ng-template #body>
+      <p>Card content</p>
+      <p>Card content</p>
+      <p>Card content</p>
+      <button nz-button class="c-md-card__btn" (click)="toggleDone()">Done</button>
+      <button nz-button class="c-md-card__btn" (click)="toggleDiscarded()">Discard</button>
+    </ng-template>
+  </nz-card>
 </div>
