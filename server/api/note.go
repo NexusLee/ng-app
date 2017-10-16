@@ -6,12 +6,12 @@ import (
 )
 
 type Note struct {
-  id int
-  title string
-  description string
-  starred bool
-  done  bool
-  deleted bool
+  ID int
+  Title string
+  Description string
+  Starred bool
+  Done  bool
+  Deleted bool
 }
 
 type NoteList struct {
@@ -91,12 +91,12 @@ func NewNoteService() *restful.WebService {
 //
 func getAllNotes(request *restful.Request, response *restful.Response) {
   log.Print("getAllNotes")
-  response.WriteEntity(NoteList{[]Note{{id: 1, title: "Task of the day"}, {id: 2, title: "Pi", description: "Buy a milk."}}})
+  response.WriteEntity(NoteList{[]Note{{ID: 1, Title: "Task of the day"}, {ID: 2, Title: "Pi", Description: "Buy a milk."}}})
 }
 
 // GET http://localhost:8080/users/42
 //
 func findNote(request *restful.Request, response *restful.Response) {
   log.Print("findNote")
-  response.WriteEntity(Note{id: 1, title: "Task of the day"})
+  response.WriteEntity(Note{ID: 1, Title: "Task of the day"})
 }
