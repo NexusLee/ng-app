@@ -6,12 +6,12 @@ import (
 )
 
 type Note struct {
-  ID int
-  Title string
-  Description string
-  Starred bool
-  Done  bool
-  Deleted bool
+  id int
+  title string
+  description string
+  starred bool
+  done  bool
+  deleted bool
 }
 
 type NoteList struct {
