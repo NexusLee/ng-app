@@ -3,6 +3,8 @@ package api
 import (
   "github.com/emicklei/go-restful"
   "log"
+  "net/http"
+
 )
 
 type Note struct {
@@ -47,7 +49,7 @@ func (n *NoteResource)NewNoteService() *restful.WebService {
   // docs
   Doc("update a note").
   Param(ws.PathParameter("note-id", "identifier of the note").DataType("string")).
-  Metadata(restfulspec.KeyOpenAPITags, tags).
+  //Metadata(restfulspec.KeyOpenAPITags, tags).
   Reads(Note{})) // from the request
 
 
