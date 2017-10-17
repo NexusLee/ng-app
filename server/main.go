@@ -12,7 +12,8 @@ func main(){
   restful.Filter(globalLogging)
 
   restful.Add(api.NewUserService())
-  restful.Add(api.NewNoteService())
+//  restful.Add(api.NewNoteService())
+  restful.Add(api.NoteResource{}())
   log.Print("start listening on localhost:3000")
   log.Fatal(http.ListenAndServe(":3000", nil))
 }

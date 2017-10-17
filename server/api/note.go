@@ -27,7 +27,7 @@ type NoteResource struct {
 }
 
 
-func (n *NoteResource)NewNoteService() *restful.WebService {
+func NewNoteService() *restful.WebService {
   ws := new(restful.WebService)
   ws.
   Path("/api/notes").
@@ -40,12 +40,12 @@ func (n *NoteResource)NewNoteService() *restful.WebService {
   //tags := []string{"notes"}
 
   // install a counter filter
-  ws.Route(ws.GET("").Filter(NewCountFilter().routeCounter).To(n.getAllNotes))
+  ws.Route(ws.GET("").Filter(NewCountFilter().routeCounter).To(getAllNotes))
 
   // install 2 chained route filters (processed before calling findUser)
-  ws.Route(ws.GET("/{note-id}").Filter(routeLogging).Filter(NewCountFilter().routeCounter).To(n.findNote))
+  ws.Route(ws.GET("/{note-id}").Filter(routeLogging).Filter(NewCountFilter().routeCounter).To(findNote))
 
-  ws.Route(ws.PUT("/{note-id}").To(n.updateNote).
+  ws.Route(ws.PUT("/{note-id}").To(updateNote).
   // docs
   Doc("update a note").
   Param(ws.PathParameter("note-id", "identifier of the note").DataType("string")).
