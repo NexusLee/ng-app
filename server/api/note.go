@@ -18,7 +18,14 @@ type NoteList struct {
   Notes []Note
 }
 
-func NewNoteService() *restful.WebService {
+// NoteResource is the REST layer to the Note domain
+type NoteResource struct {
+  // normally one would use DAO (data access object)
+  notes map[string]Note
+}
+
+
+func (n *NoteResource)NewNoteService() *restful.WebService {
   ws := new(restful.WebService)
   ws.
   Path("/api/notes").
@@ -29,10 +36,19 @@ func NewNoteService() *restful.WebService {
   ws.Filter(webserviceLogging).Filter(measureTime)
 
   // install a counter filter
-  ws.Route(ws.GET("").Filter(NewCountFilter().routeCounter).To(getAllNotes))
+  ws.Route(ws.GET("").Filter(NewCountFilter().routeCounter).To(n.getAllNotes))
 
   // install 2 chained route filters (processed before calling findUser)
-  ws.Route(ws.GET("/{user-id}").Filter(routeLogging).Filter(NewCountFilter().routeCounter).To(findNote))
+  ws.Route(ws.GET("/{note-id}").Filter(routeLogging).Filter(NewCountFilter().routeCounter).To(n.findNote))
+
+  ws.Route(ws.PUT("/{note-id}").To(n.updateNote).
+  // docs
+  Doc("update a note").
+  Param(ws.PathParameter("note-id", "identifier of the note").DataType("string")).
+  Metadata(restfulspec.KeyOpenAPITags, tags).
+  Reads(Note{})) // from the request
+
+
   return ws
 }
 
@@ -87,16 +103,30 @@ func NewNoteService() *restful.WebService {
 //  chain.ProcessFilter(req, resp)
 //}
 
-// GET http://localhost:8080/users
+// GET http://localhost:8000/notes
 //
 func getAllNotes(request *restful.Request, response *restful.Response) {
   log.Print("getAllNotes")
   response.WriteEntity(NoteList{[]Note{{ID: 1, Title: "Task of the day"}, {ID: 2, Title: "Pi", Description: "Buy a milk."}}})
 }
 
-// GET http://localhost:8080/users/42
+// GET http://localhost:8000/notes/42
 //
 func findNote(request *restful.Request, response *restful.Response) {
   log.Print("findNote")
   response.WriteEntity(Note{ID: 1, Title: "Task of the day"})
+}
+
+// PUT http://localhost:8000/notes/1
+// <Note><ID>1</ID><Title>Task of the day</Title></Note>
+//
+func (n *NoteResource) updateNote(request *restful.Request, response *restful.Response) {
+  note := new(Note)
+  err := request.ReadEntity(&note)
+  if err == nil {
+    n.notes[note.ID] = *note
+    response.WriteEntity(note)
+  } else {
+    response.WriteError(http.StatusInternalServerError, err)
+  }
 }
