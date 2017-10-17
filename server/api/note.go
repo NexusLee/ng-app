@@ -6,7 +6,7 @@ import (
 )
 
 type Note struct {
-  ID int
+  ID string
   Title string
   Description string
   Starred bool
@@ -34,6 +34,8 @@ func (n *NoteResource)NewNoteService() *restful.WebService {
 
   // install a webservice filter (processed before any route)
   ws.Filter(webserviceLogging).Filter(measureTime)
+
+  tags := []string{"notes"}
 
   // install a counter filter
   ws.Route(ws.GET("").Filter(NewCountFilter().routeCounter).To(n.getAllNotes))
@@ -105,16 +107,16 @@ func (n *NoteResource)NewNoteService() *restful.WebService {
 
 // GET http://localhost:8000/notes
 //
-func getAllNotes(request *restful.Request, response *restful.Response) {
+func (n *NoteResource) getAllNotes(request *restful.Request, response *restful.Response) {
   log.Print("getAllNotes")
-  response.WriteEntity(NoteList{[]Note{{ID: 1, Title: "Task of the day"}, {ID: 2, Title: "Pi", Description: "Buy a milk."}}})
+  response.WriteEntity(NoteList{[]Note{{ID: "1", Title: "Task of the day"}, {ID: "2", Title: "Pi", Description: "Buy a milk."}}})
 }
 
 // GET http://localhost:8000/notes/42
 //
-func findNote(request *restful.Request, response *restful.Response) {
+func (n *NoteResource) findNote(request *restful.Request, response *restful.Response) {
   log.Print("findNote")
-  response.WriteEntity(Note{ID: 1, Title: "Task of the day"})
+  response.WriteEntity(Note{ID: "1", Title: "Task of the day"})
 }
 
 // PUT http://localhost:8000/notes/1
