@@ -37,7 +37,7 @@ func (n *NoteResource)NewNoteService() *restful.WebService {
   // install a webservice filter (processed before any route)
   ws.Filter(webserviceLogging).Filter(measureTime)
 
-  tags := []string{"notes"}
+  //tags := []string{"notes"}
 
   // install a counter filter
   ws.Route(ws.GET("").Filter(NewCountFilter().routeCounter).To(n.getAllNotes))
