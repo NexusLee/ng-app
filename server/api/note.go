@@ -134,7 +134,7 @@ func (n *NoteResource) updateNote(request *restful.Request, response *restful.Re
 //    response.WriteError(http.StatusInternalServerError, err)
 //  }
 
-  note := Note{ID: request.PathParameter("user-id")}
+  note := Note{ID: request.PathParameter("note-id")}
   log.Print(request)
   log.Print(note)
   err := request.ReadEntity(&note)
