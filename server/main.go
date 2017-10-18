@@ -14,10 +14,10 @@ func main(){
   restful.Add(api.NewUserService())
 //  restful.Add(api.NewNoteService())
 
-  n := &api.NoteResource{}
-  n.NewNoteService()
+//  n := &api.NoteResource{}
+//  n.NewNoteService()
 
- /// restful.Add(api.&NoteResource{}.NewNoteService())
+  restful.Add((&api.NoteResource{}).NewNoteService())
 //  restful.Add(api.NoteResource{}.NewNoteService())
   log.Print("start listening on localhost:3000")
   log.Fatal(http.ListenAndServe(":3000", nil))
