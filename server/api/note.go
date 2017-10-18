@@ -125,12 +125,22 @@ func (n *NoteResource) findNote(request *restful.Request, response *restful.Resp
 // <Note><ID>1</ID><Title>Task of the day</Title></Note>
 //
 func (n *NoteResource) updateNote(request *restful.Request, response *restful.Response) {
-  note := new(Note)
+//  note := new(Note)
+//  err := request.ReadEntity(&note)
+//  if err == nil {
+//    n.notes[note.ID] = *note
+//    response.WriteEntity(note)
+//  } else {
+//    response.WriteError(http.StatusInternalServerError, err)
+//  }
+
+  note := Note{Id: request.PathParameter("user-id")}
   err := request.ReadEntity(&note)
   if err == nil {
-    n.notes[note.ID] = *note
-    response.WriteEntity(note)
+    n.notes[note.ID] = note
+    response.WriteHeaderAndEntity(http.StatusCreated, note)
   } else {
-    response.WriteError(http.StatusInternalServerError, err)
+    response.AddHeader("Content-Type", "text/plain")
+    response.WriteErrorString(http.StatusInternalServerError, err.Error())
   }
 }
