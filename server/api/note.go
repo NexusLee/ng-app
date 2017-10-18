@@ -135,7 +135,7 @@ func (n *NoteResource) updateNote(request *restful.Request, response *restful.Re
 //  }
 
   note := Note{ID: request.PathParameter("note-id")}
-  log.Print(request.Request.ParseForm())
+  log.Print(request.ReadEntity(&note))
   log.Print(note)
   err := request.ReadEntity(&note)
   if err == nil {
