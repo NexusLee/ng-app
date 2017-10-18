@@ -134,12 +134,12 @@ func (n *NoteResource) updateNote(request *restful.Request, response *restful.Re
 //    response.WriteError(http.StatusInternalServerError, err)
 //  }
 
-  note := Note{ID: request.PathParameter("note-id")}
-  log.Print(request.ReadEntity(&note))
-  log.Print(note)
+  note := new(Note)
+  //note := request.ReadEntity(&note)
+
   err := request.ReadEntity(&note)
   if err == nil {
-    n.notes[note.ID] = note
+    //n.notes[note.ID] = note
     response.WriteHeaderAndEntity(http.StatusCreated, note)
   } else {
     response.AddHeader("Content-Type", "text/plain")
