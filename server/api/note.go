@@ -5,6 +5,9 @@ import (
   "log"
   "net/http"
   "fmt"
+  "io"
+  "io/ioutil"
+  "encoding/json"
 )
 
 var FdMap = map[string]string{}  // {}为初始化成空
