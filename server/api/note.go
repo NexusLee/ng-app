@@ -115,13 +115,7 @@ func (n *NoteResource)NewNoteService() *restful.WebService {
 func (n *NoteResource) getAllNotes(request *restful.Request, response *restful.Response) {
   log.Print("getAllNotes")
 
-  //读取目录下信息
-  fileInfo, _ := ioutil.ReadDir("./");
-  for _, v := range fileInfo {
-    fmt.Println(v.Name());
-  }
-
-  FdMap, err := readFile("../data/notes.json")
+  FdMap, err := readFile("./data/notes.json")
 
   if err != nil {
     fmt.Println("readFile: ", err.Error())
