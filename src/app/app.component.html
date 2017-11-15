@@ -1,13 +1,26 @@
 <div>
-  <a  routerLink="/about" routerLinkActive="active" class="col-1-4">
-    <div class="module hero">
-      <h4>about</h4>
-    </div>
-  </a>
-  <a  routerLink="/heroes" routerLinkActive="active" class="col-1-4">
-    <div class="module hero">
-      <h4>heroes</h4>
-    </div>
-  </a>
+  <ul nz-menu [nzMode]="'horizontal'">
+    <li nz-menu-item>
+      <a routerLink="/notes" routerLinkActive="active" class="col-1-4">
+        <div class="module hero">
+          <h4>notes</h4>
+        </div>
+      </a>
+    </li>
+    <li nz-menu-item>
+      <a routerLink="/about" routerLinkActive="active" class="col-1-4">
+        <div class="module hero">
+          <h4>about</h4>
+        </div>
+      </a>
+    </li>
+    <li nz-menu-item>
+      <a  routerLink="/heroes" routerLinkActive="active" class="col-1-4">
+        <div class="module hero">
+          <h4>heroes</h4>
+        </div>
+      </a>
+    </li>
+  </ul>
   <router-outlet></router-outlet>
 </div>

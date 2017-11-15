@@ -20,17 +20,15 @@
   </md-card-actions>
 </md-card> -->
 <div>
-  <nz-card style="width:300px;">
+  <nz-card style="width:98%;height:200px;margin: 0 auto;">
     <ng-template #title>
-      {{note?.Title}}
+        <nz-input [(ngModel)]="note.Title" [nzPlaceHolder]="'请输入文字'" (ngModelChange)="updateNote($event)" style="width: 200px"></nz-input>
     </ng-template>
     <ng-template #extra>
-      <a>更多</a>
+      <i class="anticon anticon-star-o" (click)="toggleStarred()"></i>
     </ng-template>
     <ng-template #body>
-      <p>Card content</p>
-      <p>Card content</p>
-      <p>Card content</p>
+      <p>{{note.Description}}</p>
       <button nz-button class="c-md-card__btn" (click)="toggleDone()">Done</button>
       <button nz-button class="c-md-card__btn" (click)="toggleDiscarded()">Discard</button>
     </ng-template>

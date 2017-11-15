@@ -7,6 +7,8 @@ import (
 
 )
 
+var FdMap = map[string]string{}  // {}为初始化成空
+
 type Note struct {
   ID string
   Title string
@@ -25,7 +27,6 @@ type NoteResource struct {
   // normally one would use DAO (data access object)
   notes map[string]Note
 }
-
 
 func (n *NoteResource)NewNoteService() *restful.WebService {
   ws := new(restful.WebService)
@@ -111,6 +112,15 @@ func (n *NoteResource)NewNoteService() *restful.WebService {
 //
 func (n *NoteResource) getAllNotes(request *restful.Request, response *restful.Response) {
   log.Print("getAllNotes")
+
+  FdMap, err := readFile("../data/notes.json")
+
+  if err != nil {
+    fmt.Println("readFile: ", err.Error())
+    return
+  }
+  fmt.Println("readFile: ", FdMap)
+
   response.WriteEntity(NoteList{[]Note{{ID: "1", Title: "Task of the day"}, {ID: "2", Title: "Pi", Description: "Buy a milk."}}})
 }
 
@@ -145,4 +155,17 @@ func (n *NoteResource) updateNote(request *restful.Request, response *restful.Re
     response.AddHeader("Content-Type", "text/plain")
     response.WriteErrorString(http.StatusInternalServerError, err.Error())
   }
+}
+
+func readFile(filename string) (map[string]string, error) {
+  bytes, err := ioutil.ReadFile(filename)
+  if err != nil {
+    fmt.Println("ReadFile: ", err.Error())
+    return nil, err
+  }
+  if err := json.Unmarshal(bytes, &FdMap); err != nil {
+    fmt.Println("Unmarshal: ", err.Error())
+    return nil, err
+  }
+  return FdMap, nil
 }

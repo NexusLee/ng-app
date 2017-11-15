@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-note-wrapper',
   templateUrl: './note-wrapper.component.html',
+  styleUrls: ['./note-wrapper.component.css']
 })
 export class NoteWrapperComponent implements OnInit, OnDestroy {
 

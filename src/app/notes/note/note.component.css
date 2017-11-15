@@ -1,0 +1,8 @@
+.ant-card i.anticon-star-o{
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.ant-card .ant-card-extra{
+  top: 10px;
+}

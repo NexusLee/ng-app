@@ -1,5 +1,5 @@
-<div class="c-md-list">
-  <div class="c-md-list__list-element" *ngFor="let note of notes">
+<div nz-row class="c-md-list">
+  <div nz-col [nzSpan]="8" class="c-md-list__list-element" *ngFor="let note of notes">
     <app-note [note]="note" (change)="updateNote(note)"></app-note>
   </div>
 </div>
