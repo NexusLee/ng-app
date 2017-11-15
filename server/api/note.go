@@ -5,7 +5,6 @@ import (
   "log"
   "net/http"
   "fmt"
-  "io"
   "io/ioutil"
   "encoding/json"
 )
