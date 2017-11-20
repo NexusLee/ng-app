@@ -121,7 +121,8 @@ func (n *NoteResource) getAllNotes(request *restful.Request, response *restful.R
   }
   fmt.Println("readFile: ", noteList)
 
-  response.WriteEntity(NoteList{[]Note{{ID: "1", Title: "Task of the day"}, {ID: "2", Title: "Pi", Description: "Buy a milk."}}})
+  response.WriteEntity(noteList)
+  //response.WriteEntity(NoteList{[]Note{{ID: "1", Title: "Task of the day"}, {ID: "2", Title: "Pi", Description: "Buy a milk."}}})
 }
 
 // GET http://localhost:8000/notes/42
@@ -160,7 +161,6 @@ func (n *NoteResource) updateNote(request *restful.Request, response *restful.Re
 func readFile(filename string) (NoteList, error) {
   var noteList NoteList  // {}为初始化成空
   bytes, err := ioutil.ReadFile(filename)
-  fmt.Println("data:", bytes)
   if err != nil {
     fmt.Println("ReadFile: ", err.Error())
     return noteList, err
