@@ -28,8 +28,6 @@ type NoteResource struct {
   notes map[string]Note
 }
 
-var noteList NoteList  // {}为初始化成空
-
 func (n *NoteResource)NewNoteService() *restful.WebService {
   ws := new(restful.WebService)
   ws.
@@ -160,15 +158,16 @@ func (n *NoteResource) updateNote(request *restful.Request, response *restful.Re
 }
 
 func readFile(filename string) (NoteList, error) {
+  var noteList NoteList  // {}为初始化成空
   bytes, err := ioutil.ReadFile(filename)
   fmt.Println("data:", bytes)
   if err != nil {
     fmt.Println("ReadFile: ", err.Error())
-    return nil, err
+    return noteList, err
   }
   if err := json.Unmarshal([]byte(bytes), &noteList); err != nil {
     fmt.Println("Unmarshal: ", err.Error())
-    return nil, err
+    return noteList, err
   }
 
   return noteList, nil
