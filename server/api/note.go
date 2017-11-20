@@ -161,7 +161,7 @@ func (n *NoteResource) updateNote(request *restful.Request, response *restful.Re
 
 func readFile(filename string) (NoteList, error) {
   bytes, err := ioutil.ReadFile(filename)
-  fmt.Println("data:" + bytes)
+  fmt.Println("data:", bytes)
   if err != nil {
     fmt.Println("ReadFile: ", err.Error())
     return nil, err
