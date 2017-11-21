@@ -53,6 +53,12 @@ func (n *NoteResource)NewNoteService() *restful.WebService {
   //Metadata(restfulspec.KeyOpenAPITags, tags).
   Reads(Note{})) // from the request
 
+  ws.Route(ws.PUT("").To(u.createNote).
+  // docs
+  Doc("create a note").
+  //Metadata(restfulspec.KeyOpenAPITags, tags).
+  Reads(Note{})) // from the request
+
 
   return ws
 }
@@ -108,7 +114,7 @@ func (n *NoteResource)NewNoteService() *restful.WebService {
 //  chain.ProcessFilter(req, resp)
 //}
 
-// PUT http://localhost:8080/notes/1
+// PUT http://localhost:8080/notes
 // <Note><ID>1</ID><Title>Task of the day</Title></Note>
 //
 func (u *NoteResource) createNote(request *restful.Request, response *restful.Response) {
