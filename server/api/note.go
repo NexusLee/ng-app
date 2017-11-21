@@ -53,7 +53,7 @@ func (n *NoteResource)NewNoteService() *restful.WebService {
   //Metadata(restfulspec.KeyOpenAPITags, tags).
   Reads(Note{})) // from the request
 
-  ws.Route(ws.PUT("").To(u.createNote).
+  ws.Route(ws.PUT("").To(n.createNote).
   // docs
   Doc("create a note").
   //Metadata(restfulspec.KeyOpenAPITags, tags).
