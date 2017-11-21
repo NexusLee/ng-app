@@ -51,8 +51,6 @@ export class NotesListComponent implements OnChanges {
         notes => {
           this.notes = notes['Notes'].filter((note) =>
           !note._done && !note._deleted && !note._starred);
-
-          console.log(this.notes);
         }
       );
   }

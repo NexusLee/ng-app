@@ -117,7 +117,8 @@ func (n *NoteResource)NewNoteService() *restful.WebService {
 // PUT http://localhost:8080/notes
 // <Note><ID>1</ID><Title>Task of the day</Title></Note>
 //
-func (u *NoteResource) createNote(request *restful.Request, response *restful.Response) {
+func (n *NoteResource) createNote(request *restful.Request, response *restful.Response) {
+  log.Print("1111")
   log.Print(request)
   /*usr := User{ID: request.PathParameter("user-id")}
   err := request.ReadEntity(&usr)
