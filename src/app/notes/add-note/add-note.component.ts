@@ -67,25 +67,32 @@ export class AddNoteComponent {
 
   resetForm($event: MouseEvent) {
     $event.preventDefault();
-
   }
 
   submitForm = ($event: MouseEvent, data) => {
-    console.log(data)
-    console.log(this.validateForm.controls)
+    //console.log(data)
+    //console.log(this.validateForm.controls)
 
-    const note: Note = new Note(+111, data.Title, data.Description);
-    this.noteService.create(note).subscribe();
+    //const note: Note = new Note(+111, data.Title, data.Description);
+    //this.noteService.create(note).subscribe();
 
-    console.log(note)
+    //console.log(note)
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[ i ].markAsDirty();
     }
+
+    const note: Note = new Note(+111, data.Title, data.Description);
+    this.noteService
+      .create(note)
+      .subscribe(() => {
+        //notes =>
+        //this.retrieveNotes();
+      });
   }
 
   createNote(id: HTMLInputElement, title: HTMLInputElement, description: HTMLInputElement): void {
-
-    //this.noteService.create(note).subscribe();
+    const note: Note = new Note(+id.value, title.value, description.value);
+    this.noteService.create(note).subscribe();
     //EmitterService.get(this.addId).emit(note);
   }
 }

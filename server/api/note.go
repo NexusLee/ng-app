@@ -108,18 +108,32 @@ func (n *NoteResource)NewNoteService() *restful.WebService {
 //  chain.ProcessFilter(req, resp)
 //}
 
+// PUT http://localhost:8080/notes/1
+// <Note><ID>1</ID><Title>Task of the day</Title></Note>
+//
+func (u *NoteResource) createNote(request *restful.Request, response *restful.Response) {
+  log.Print(request)
+  /*usr := User{ID: request.PathParameter("user-id")}
+  err := request.ReadEntity(&usr)
+  if err == nil {
+    u.users[usr.ID] = usr
+    response.WriteHeaderAndEntity(http.StatusCreated, usr)
+  } else {
+    response.WriteError(http.StatusInternalServerError, err)
+  }*/
+}
+
+
 // GET http://localhost:8000/notes
 //
 func (n *NoteResource) getAllNotes(request *restful.Request, response *restful.Response) {
   log.Print("getAllNotes")
-
   noteList, err := readFile("./data/notes.json")
 
   if err != nil {
     fmt.Println("readFile: ", err.Error())
     return
   }
-  fmt.Println("readFile: ", noteList)
 
   response.WriteEntity(noteList)
   //response.WriteEntity(NoteList{[]Note{{ID: "1", Title: "Task of the day"}, {ID: "2", Title: "Pi", Description: "Buy a milk."}}})
@@ -136,22 +150,12 @@ func (n *NoteResource) findNote(request *restful.Request, response *restful.Resp
 // <Note><ID>1</ID><Title>Task of the day</Title></Note>
 //
 func (n *NoteResource) updateNote(request *restful.Request, response *restful.Response) {
-//  note := new(Note)
-//  err := request.ReadEntity(&note)
-//  if err == nil {
-//    n.notes[note.ID] = *note
-//    response.WriteEntity(note)
-//  } else {
-//    response.WriteError(http.StatusInternalServerError, err)
-//  }
-
   note := new(Note)
-  //note := request.ReadEntity(&note)
-
   err := request.ReadEntity(&note)
   if err == nil {
     //n.notes[note.ID] = note
-    response.WriteHeaderAndEntity(http.StatusCreated, note)
+    response.WriteEntity(note)
+    //response.WriteHeaderAndEntity(http.StatusCreated, note)
   } else {
     response.AddHeader("Content-Type", "text/plain")
     response.WriteErrorString(http.StatusInternalServerError, err.Error())

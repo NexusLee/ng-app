@@ -35,7 +35,7 @@ export class NoteService {
   }
 
   create(note: Note): Observable<Array<Note>> {
-    const url = `${this.notesUrl}/${note.ID}`;
+    const url = `${this.notesUrl}`;
     return this.http
       .post(url, JSON.stringify(note), this.options)
       .map((response: Response) => <Note> response.json())
